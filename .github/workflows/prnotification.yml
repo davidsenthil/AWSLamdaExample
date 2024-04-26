@@ -13,7 +13,7 @@ jobs:
         run: |
           webhook_url="https://jaggaer.webhook.office.com/webhookb2/06a5f793-6e21-4e3c-92d4-5ad2e5a85117@7e4fc837-87aa-4740-859d-1ea52f02e37b/IncomingWebhook/a710b48527074fdd9f6b570a3a980c3f/b292915f-88a8-4fef-a002-b5999e3965e5"
           curl -H "Content-Type: application/json" -d '{
-              "title": "Pull Request Reviewed",
+              "title": "New Pull Request is Submitted",
               "text": "A pull request has been created for review",
               "themeColor": "0076D7",
               "sections": [
