@@ -16,44 +16,44 @@ jobs:
            pr_title="${{ github.event.pull_request.title }}"
            pr_url="${{ github.event.pull_request.html_url }}"
            repo_name="${{ github.repository }}"
-           payload='{
-          "type": "message",
-          "attachments": [
-          {
-            "contentType": "application/vnd.microsoft.card.adaptive",
-            "content": {
+          payload='{
+            "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
             "type": "AdaptiveCard",
+            "version": "1.4",
             "body": [
               {
-                "type": "TextBlock",
-                "text": "Pull Request Assigned",
-                "weight": "Bolder",
-                "size": "Medium"
-              },
-              {
-                "type": "TextBlock",
-                "text": "Creator: '"$creator"'"
-              },
-              {
-                "type": "TextBlock",
-                "text": "Title: '"$pr_title"'",
-                "wrap": true
-              },
-              {
-                "type": "TextBlock",
-                "text": "Repository: '"$repo_name"'",
-                "wrap": true
+                "type": "Container",
+                "items": [
+                  {
+                    "type": "TextBlock",
+                    "text": "Pull Request Assigned",
+                    "weight": "Bolder",
+                    "size": "Medium"
+                  },
+                  {
+                    "type": "TextBlock",
+                    "text": "Creator: ${CREATOR}",
+                    "wrap": true
+                  },
+                  {
+                    "type": "TextBlock",
+                    "text": "Pull Request Title: ${PR_TITLE}",
+                    "wrap": true
+                  },
+                  {
+                    "type": "TextBlock",
+                    "text": "Repository: ${REPO_NAME}",
+                    "wrap": true
+                  }
+                ]
               }
             ],
-          "actions": [
-            {
-              "type": "Action.OpenUrl",
-              "title": "View Pull Request",
-              "url": "'"$pr_url"'"
-            }
-          ]
-          }
-          }
-          ]
+            "actions": [
+              {
+                "type": "Action.OpenUrl",
+                "title": "View Pull Request",
+                "url": "${PR_URL}"
+              }
+            ]
           }'
           curl -H "Content-Type: application/json" -d "$payload" "$webhook_url"
