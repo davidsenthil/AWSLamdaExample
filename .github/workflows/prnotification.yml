@@ -26,9 +26,13 @@ jobs:
             "body": [
               {
                 "type": "TextBlock",
-                "text": "Creator: '"$creator"'"
+                "text": "Pull Request Assigned",
                 "weight": "Bolder",
                 "size": "Medium"
+              },
+              {
+                "type": "TextBlock",
+                "text": "Creator: '"$creator"'"
               },
               {
                 "type": "TextBlock",
