@@ -17,7 +17,7 @@ jobs:
           echo "::set-output name=teams::$(declare -p teams)"
       - name: Send Microsoft Teams Notification
         run: |
-          reviewers=$(jq -r '.review.reviewers[].login' "$GITHUB_EVENT_PATH")
+          reviewers=$(jq -r '.review.reviewers | if . then .[].login else empty end' "$GITHUB_EVENT_PATH")
           creator="${{ github.event.pull_request.user.login }}"
           pr_title="${{ github.event.pull_request.title }}"
           pr_url="${{ github.event.pull_request.html_url }}"
