@@ -31,11 +31,11 @@ jobs:
                   },
                   {
                     "name": "Creator",
-                    "value": creator
+                    "value": "${creator}"
                   },
                   {
                     "name": "Repository",
-                    "value": repo_name
+                    "value": "${repo_name}"
                   }
                 ]
               }
