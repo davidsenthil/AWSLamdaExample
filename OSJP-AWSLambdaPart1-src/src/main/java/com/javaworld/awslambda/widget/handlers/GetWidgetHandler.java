@@ -31,7 +31,7 @@ public class GetWidgetHandler implements RequestHandler<WidgetRequest, Widget> {
     	return widget;
     }
     
-    
+// New edit
 //    public Widget handleRequest(WidgetRequest widgetRequest, Context context) {
 ////      return new Widget(widgetRequest.getId(), "Senthil: My Widget " + widgetRequest.getId());
 //  	
