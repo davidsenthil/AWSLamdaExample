@@ -12,8 +12,11 @@ jobs:
       - name: Send Microsoft Teams Notification
         run: |
           webhook_url="https://jaggaer.webhook.office.com/webhookb2/06a5f793-6e21-4e3c-92d4-5ad2e5a85117@7e4fc837-87aa-4740-859d-1ea52f02e37b/IncomingWebhook/a710b48527074fdd9f6b570a3a980c3f/b292915f-88a8-4fef-a002-b5999e3965e5"
-          created_by="${{ github.event.pull_request.user.login }}"
-                         payload='{
+           creator="${{ github.event.pull_request.user.login }}"
+           pr_title="${{ github.event.pull_request.title }}"
+           pr_url="${{ github.event.pull_request.html_url }}"
+           repo_name="${{ github.repository }}"
+           payload='{
           "type": "message",
           "attachments": [
           {
@@ -23,17 +26,13 @@ jobs:
             "body": [
               {
                 "type": "TextBlock",
-                "text": "Pull Request Assigned",
+                "text": "Pull Request submitted by '"$creator"'"
                 "weight": "Bolder",
                 "size": "Medium"
               },
               {
                 "type": "TextBlock",
-                "text": "Creator: '"$creator"'"
-              },
-              {
-                "type": "TextBlock",
-                "text": "Pull Request Title: '"$pr_title"'",
+                "text": "Title: '"$pr_title"'",
                 "wrap": true
               },
               {
