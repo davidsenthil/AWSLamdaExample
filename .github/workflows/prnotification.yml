@@ -16,44 +16,29 @@ jobs:
            pr_title="${{ github.event.pull_request.title }}"
            pr_url="${{ github.event.pull_request.html_url }}"
            repo_name="${{ github.repository }}"
-           payload='{
-          "type": "message",
-          "attachments": [
-          {
-            "contentType": "application/vnd.microsoft.card.adaptive",
-            "content": {
-            "type": "AdaptiveCard",
-            "body": [
+          payload='{
+            "@type": "MessageCard",
+            "@context": "https://schema.org/extensions",
+            "summary": "New TODO: Pull Request Assigned",
+            "themeColor": "0076D7",
+            "sections": [
               {
-                "type": "TextBlock",
-                "text": "Pull Request Assigned",
-                "weight": "Bolder",
-                "size": "Medium"
-              },
-              {
-                "type": "TextBlock",
-                "text": "Creator: '"$creator"'"
-              },
-              {
-                "type": "TextBlock",
-                "text": "Title: '"$pr_title"'",
-                "wrap": true
-              },
-              {
-                "type": "TextBlock",
-                "text": "Repository: '"$repo_name"'",
-                "wrap": true
+                "activityTitle": "New TODO: Pull Request Assigned",
+                "facts": [
+                  {
+                    "name": "Pull Request",
+                    "value": "[${pr_title}](${pr_url})"
+                  },
+                  {
+                    "name": "Creator",
+                    "value": creator
+                  },
+                  {
+                    "name": "Repository",
+                    "value": repo_name
+                  }
+                ]
               }
-            ],
-          "actions": [
-            {
-              "type": "Action.OpenUrl",
-              "title": "View Pull Request",
-              "url": "'"$pr_url"'"
-            }
-          ]
-          }
-          }
-          ]
+            ]
           }'
           curl -H "Content-Type: application/json" -d "$payload" "$webhook_url"
