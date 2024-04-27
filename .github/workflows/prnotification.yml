@@ -20,6 +20,7 @@ jobs:
             "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
             "type": "AdaptiveCard",
             "version": "1.4",
+            "summary": "${PR_TITLE}",
             "body": [
               {
                 "type": "Container",
